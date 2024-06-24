@@ -7,7 +7,7 @@
     <InvariantGlobalization>true</InvariantGlobalization>
     <RootNamespace>multi_step_form.Server</RootNamespace>
     <SpaRoot>..\multi-step_form.client</SpaRoot>
-    <SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand>
+    <SpaProxyLaunchCommand>yarn start</SpaProxyLaunchCommand>
     <SpaProxyServerUrl>https://localhost:4200</SpaProxyServerUrl>
   </PropertyGroup>
 
