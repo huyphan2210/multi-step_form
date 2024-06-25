@@ -1,12 +1,40 @@
+using Google.Apis.Auth.OAuth2;
+using Google.Cloud.Firestore;
 using Microsoft.OpenApi.Extensions;
+using multi_step_form.Server.DataAccess.AddOnCollection;
+using multi_step_form.Server.DataAccess.PersonalInfoCollection;
+using multi_step_form.Server.DataAccess.PlanCollection;
 using multi_step_form.Server.Services;
 using Swashbuckle.AspNetCore.Swagger;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Add controllers to the container.
 builder.Services.AddControllers();
+
+// Add services to the container.
 builder.Services.AddScoped<IPersonalInfoService, PersonalInfoService>();
+
+//Add collections to the container
+builder.Services.AddScoped<IPersonalInfoCollection, PersonalInfoCollection>();
+builder.Services.AddScoped<IPlanCollection, PlanCollection>();
+builder.Services.AddScoped<IAddOnCollection, AddOnCollection>();
+
+//Add FireStoreDb to the Container
+builder.Services.AddScoped(provider =>
+{
+    var path = Environment.GetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS");
+    var googleCredential = GoogleCredential.FromFile(path);
+
+    var fireStoreBuilder = new FirestoreDbBuilder
+    {
+        ProjectId = Environment.GetEnvironmentVariable("FIRESTORE_FORM_PROJECT-ID"),
+        Credential = googleCredential,
+    };
+
+    return fireStoreBuilder.Build();
+});
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
