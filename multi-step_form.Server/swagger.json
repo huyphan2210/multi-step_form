@@ -74,6 +74,10 @@
     "AddOn": {
       "type": "object",
       "properties": {
+        "id": {
+          "format": "uuid",
+          "type": "string"
+        },
         "name": {
           "type": "string"
         },
@@ -93,6 +97,10 @@
     "PersonalInfoRequest": {
       "type": "object",
       "properties": {
+        "id": {
+          "format": "uuid",
+          "type": "string"
+        },
         "name": {
           "type": "string"
         },
@@ -102,20 +110,26 @@
         "phone": {
           "type": "string"
         },
-        "addOns": {
+        "planId": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "addOnIds": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/AddOn"
+            "format": "uuid",
+            "type": "string"
           }
-        },
-        "plan": {
-          "$ref": "#/definitions/Plan"
         }
       }
     },
     "PersonalInfoResponse": {
       "type": "object",
       "properties": {
+        "id": {
+          "format": "uuid",
+          "type": "string"
+        },
         "name": {
           "type": "string"
         },
@@ -124,6 +138,17 @@
         },
         "phone": {
           "type": "string"
+        },
+        "planId": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "addOnIds": {
+          "type": "array",
+          "items": {
+            "format": "uuid",
+            "type": "string"
+          }
         },
         "addOns": {
           "type": "array",
@@ -139,6 +164,10 @@
     "Plan": {
       "type": "object",
       "properties": {
+        "id": {
+          "format": "uuid",
+          "type": "string"
+        },
         "name": {
           "type": "string"
         },
