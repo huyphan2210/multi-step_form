@@ -2,7 +2,7 @@
 {
     public class PersonalInfoRequest : PersonalInfo
     {
-        public List<AddOn> AddOns { get; set; } = new();
-        public Plan? Plan { get; set; }
+        public List<Guid>? AddOnIds { get; set; }
+        public Guid PlanId { get; set; }
     }
 }

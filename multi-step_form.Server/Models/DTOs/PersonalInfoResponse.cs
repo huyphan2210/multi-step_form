@@ -2,7 +2,7 @@
 {
     public class PersonalInfoResponse : PersonalInfo
     {
-        public List<AddOn> AddOns { get; set; } = new();
+        public List<AddOn>? AddOns { get; set; }
         public Plan? Plan { get; set; }
     }
 }
