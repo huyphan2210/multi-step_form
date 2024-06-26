@@ -1,5 +1,6 @@
 ﻿using Google.Cloud.Firestore;
 using multi_step_form.Server.Models;
+using multi_step_form.Server.Models.DTOs;
 
 namespace multi_step_form.Server.DataAccess.PersonalInfoCollection
 {
@@ -23,6 +24,20 @@ namespace multi_step_form.Server.DataAccess.PersonalInfoCollection
             var snapshot = await query.GetSnapshotAsync();
             var personalInfo = snapshot.Documents.Select(doc => doc.ConvertTo<PersonalInfo>()).FirstOrDefault();
             return personalInfo;
+        }
+
+        public async Task<PersonalInfo> RegisterNewPersonalInfoAsync(PersonalInfoRequest personalInfoRequest)
+        {
+            var newPersonalInfo = personalInfoRequest.ParseRequestToPersonalInfo();
+            var docRef = await _personalInfoReference.AddAsync(newPersonalInfo);
+            var snapshot = await docRef.GetSnapshotAsync();
+
+            if (snapshot.Exists)
+            {
+                return snapshot.ConvertTo<PersonalInfo>();
+            }
+
+            throw new Exception("A snapshot doesn't exist");
         }
     }
 }
