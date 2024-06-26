@@ -1,6 +1,6 @@
 ﻿using multi_step_form.Server.Models.DTOs;
 
-namespace multi_step_form.Server.Services
+namespace multi_step_form.Server.Services.PersonalInfoService
 {
     public interface IPersonalInfoService
     {
