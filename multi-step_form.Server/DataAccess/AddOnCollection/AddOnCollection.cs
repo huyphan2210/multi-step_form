@@ -17,10 +17,9 @@ namespace multi_step_form.Server.DataAccess.AddOnCollection
             _addOnReference = fireStoreDb.Collection(nameof(AddOn));
         }
 
-        public async Task<List<AddOn>> GetAddOnByIdsAsync(List<Guid> addOnIds)
+        public async Task<List<AddOn>> GetAddOnsAsync()
         {
-            var query = _addOnReference.WhereArrayContainsAny("id", addOnIds);
-            var snapshot = await query.GetSnapshotAsync();
+            var snapshot = await _addOnReference.GetSnapshotAsync();
             var addOns = snapshot.Documents.Select(doc => doc.ConvertTo<AddOn>()).ToList();
             return addOns;
         }
