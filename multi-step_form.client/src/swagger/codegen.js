@@ -1,5 +1,5 @@
-import fs from "fs";
-import { codegen } from "swagger-axios-codegen";
+const fs = require("fs");
+const { codegen } = require("swagger-axios-codegen");
 
 const swaggerDocument = JSON.parse(
   fs.readFileSync("../../../multi-step_form.Server/swagger.json", "utf-8")
