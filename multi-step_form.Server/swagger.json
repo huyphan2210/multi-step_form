@@ -5,6 +5,30 @@
     "version": "1.0"
   },
   "paths": {
+    "/api/add-on": {
+      "get": {
+        "tags": [
+          "AddOn"
+        ],
+        "operationId": "GetAddOns",
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AddOn"
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/personal-info/{email}": {
       "get": {
         "tags": [
@@ -68,6 +92,30 @@
           }
         }
       }
+    },
+    "/api/plan": {
+      "get": {
+        "tags": [
+          "Plan"
+        ],
+        "operationId": "GetPlans",
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Plan"
+              }
+            }
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -75,7 +123,6 @@
       "type": "object",
       "properties": {
         "id": {
-          "format": "uuid",
           "type": "string"
         },
         "name": {
@@ -97,10 +144,6 @@
     "PersonalInfoRequest": {
       "type": "object",
       "properties": {
-        "id": {
-          "format": "uuid",
-          "type": "string"
-        },
         "name": {
           "type": "string"
         },
@@ -110,26 +153,20 @@
         "phone": {
           "type": "string"
         },
-        "planId": {
-          "format": "uuid",
-          "type": "string"
-        },
         "addOnIds": {
           "type": "array",
           "items": {
-            "format": "uuid",
             "type": "string"
           }
+        },
+        "planId": {
+          "type": "string"
         }
       }
     },
     "PersonalInfoResponse": {
       "type": "object",
       "properties": {
-        "id": {
-          "format": "uuid",
-          "type": "string"
-        },
         "name": {
           "type": "string"
         },
@@ -140,24 +177,13 @@
           "type": "string"
         },
         "planId": {
-          "format": "uuid",
           "type": "string"
         },
         "addOnIds": {
           "type": "array",
           "items": {
-            "format": "uuid",
             "type": "string"
           }
-        },
-        "addOns": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/AddOn"
-          }
-        },
-        "plan": {
-          "$ref": "#/definitions/Plan"
         }
       }
     },
@@ -165,7 +191,6 @@
       "type": "object",
       "properties": {
         "id": {
-          "format": "uuid",
           "type": "string"
         },
         "name": {

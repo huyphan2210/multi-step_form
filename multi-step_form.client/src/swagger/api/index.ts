@@ -107,6 +107,21 @@ export class PagedResultDto<T = any> implements IPagedResult<T> {
 // customer definition
 // empty
 
+export class AddOnService {
+  /**
+   *
+   */
+  static getAddOns(options: IRequestOptions = {}): Promise<AddOn[]> {
+    return new Promise((resolve, reject) => {
+      let url = basePath + '/api/add-on';
+
+      const configs: IRequestConfig = getConfigs('get', 'application/json', url, options);
+
+      axios(configs, resolve, reject);
+    });
+  }
+}
+
 export class PersonalInfoService {
   /**
    *
@@ -151,7 +166,25 @@ export class PersonalInfoService {
   }
 }
 
+export class PlanService {
+  /**
+   *
+   */
+  static getPlans(options: IRequestOptions = {}): Promise<Plan[]> {
+    return new Promise((resolve, reject) => {
+      let url = basePath + '/api/plan';
+
+      const configs: IRequestConfig = getConfigs('get', 'application/json', url, options);
+
+      axios(configs, resolve, reject);
+    });
+  }
+}
+
 export interface AddOn {
+  /**  */
+  id?: string;
+
   /**  */
   name?: string;
 
@@ -176,10 +209,10 @@ export interface PersonalInfoRequest {
   phone?: string;
 
   /**  */
-  addOns?: AddOn[];
+  addOnIds?: string[];
 
   /**  */
-  plan?: Plan;
+  planId?: string;
 }
 
 export interface PersonalInfoResponse {
@@ -193,13 +226,16 @@ export interface PersonalInfoResponse {
   phone?: string;
 
   /**  */
-  addOns?: AddOn[];
+  planId?: string;
 
   /**  */
-  plan?: Plan;
+  addOnIds?: string[];
 }
 
 export interface Plan {
+  /**  */
+  id?: string;
+
   /**  */
   name?: string;
 
