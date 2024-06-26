@@ -17,12 +17,11 @@ namespace multi_step_form.Server.DataAccess.PlanCollection
             _planReference = fireStoreDb.Collection(nameof(Plan));
         }
 
-        public async Task<Plan?> GetPlanByIdAsync(Guid planId)
+        public async Task<List<Plan>> GetPlansAsync()
         {
-            var query = _planReference.WhereEqualTo("id", planId);
-            var snapshot = await query.GetSnapshotAsync();
-            var plan = snapshot.Documents.Select(doc => doc.ConvertTo<Plan>()).FirstOrDefault();
-            return plan;
+            var snapshot = await _planReference.GetSnapshotAsync();
+            var plans = snapshot.Documents.Select(doc => doc.ConvertTo<Plan>()).ToList();
+            return plans;
         }
     }
 }
