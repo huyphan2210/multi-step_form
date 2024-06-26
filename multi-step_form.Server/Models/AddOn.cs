@@ -6,7 +6,7 @@ namespace multi_step_form.Server.Models
     public class AddOn
     {
         [FirestoreProperty("id")]
-        public Guid Id { get; set; }
+        public required string Id { get; set; }
         [FirestoreProperty("name")]
         public string Name { get; set; } = string.Empty;
         [FirestoreProperty("description")]
