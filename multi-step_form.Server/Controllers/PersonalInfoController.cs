@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using multi_step_form.Server.Models.DTOs;
-using multi_step_form.Server.Services;
+using multi_step_form.Server.Services.PersonalInfoService;
 
 namespace multi_step_form.Server.Controllers
 {
@@ -18,16 +18,44 @@ namespace multi_step_form.Server.Controllers
         }
 
         [HttpGet("{email}", Name = "GetPersonalInfo")]
-        public async Task<PersonalInfoResponse> GetPersonalInfoAsync(string email)
+        public async Task<ActionResult<PersonalInfoResponse>> GetPersonalInfoAsync(string email)
         {
-            return await _personalInfoService.GetPersonalInfoAsync(email);
+            _logger.LogInformation("Start to get PersonalInfo");
+            try
+            {
+                return Ok(await _personalInfoService.GetPersonalInfoAsync(email));
+            }
+            catch (FileNotFoundException e)
+            {
+                _logger.LogError(e, "File not found for email: {Email}", email);
+                return NotFound();
+            }
+            catch (BadHttpRequestException e)
+            {
+                _logger.LogError(e, e.Message);
+                return BadRequest(e.Message);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "An error occurred while getting personal info for email: {Email}", email);
+                return StatusCode(500, "Internal server error");
+            }
         }
 
         [HttpPost("", Name = "RegisterNewPersonalInfo")]
-        public async Task<PersonalInfoResponse> RegisterNewPersonalInfoAsync(
+        public async Task<ActionResult<PersonalInfoResponse>> RegisterNewPersonalInfoAsync(
             [FromBody] PersonalInfoRequest personalInfoRequest)
         {
-            return await _personalInfoService.RegisterNewPersonalInfoAsync(personalInfoRequest);
+            _logger.LogInformation("Start to register a new PersonalInfo");
+            try
+            {
+                return CreatedAtRoute("", await _personalInfoService.RegisterNewPersonalInfoAsync(personalInfoRequest));
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "An error occurred while adding a PersonalInfo");
+                return StatusCode(500, "Internal server error");
+            }
         }
     }
 }
