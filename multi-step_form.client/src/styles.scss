@@ -34,8 +34,13 @@ body {
   margin: 0;
   overflow-x: hidden;
   display: flex;
+  justify-content: center;
 }
 
 body, input, button {
+  font-family: "Ubuntu", sans-serif;
+}
+
+input::placeholder {
   font-family: "Ubuntu", sans-serif;
 }
