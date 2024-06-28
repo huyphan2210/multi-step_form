@@ -1,0 +1,9 @@
+<ul>
+  <li *ngFor="let stepInfo of stepList">
+    <step
+      [stepCount]="stepInfo.stepCount"
+      [stepName]="stepInfo.stepName"
+      [isCurrentStep]="stepInfo.step === currentStep"
+    />
+  </li>
+</ul>
