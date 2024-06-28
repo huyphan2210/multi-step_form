@@ -1,0 +1,41 @@
+:host {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+
+  .step {
+    &__count {
+      padding: 1rem;
+      border-radius: 50%;
+      border: 0.1rem solid black;
+      position: relative;
+      span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    &__brief-intro {
+      display: none;
+      label {
+        display: block;
+        margin-bottom: 1rem;
+      }
+      h2 {
+        margin-block: 0;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 64rem) {
+  :host {
+    .step {
+      &__brief-intro {
+        display: block;
+      }
+    }
+  }
+}
