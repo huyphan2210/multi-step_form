@@ -1,3 +1,4 @@
+import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 export enum Step {
@@ -12,6 +13,9 @@ interface StepState {
   step: Step;
 }
 
+@Injectable({
+  providedIn: 'root',
+})
 export class StepStateService {
   private stepState$: BehaviorSubject<StepState>;
 
