@@ -5,10 +5,16 @@
 
   .step {
     &__count {
+      position: relative;
       padding: 1rem;
       border-radius: 50%;
-      border: 0.1rem solid black;
-      position: relative;
+      border: 0.1rem solid white;
+      color: white;
+
+      &.current {
+        color: var(--margin-blue);
+        background-color: var(--light-blue);
+      }
       span {
         position: absolute;
         top: 50%;
