@@ -6,14 +6,14 @@ import { serviceOptions } from 'src/swagger/api';
 
 import { environment } from 'src/environments/environment';
 import { AppComponent } from './app.component';
-import { FormComponent } from 'src/components/Form/form.component';
 import { StepperComponent } from 'src/components/Stepper/stepper.component';
 import { StepBarModule } from 'src/components/StepBar/step-bar.module';
 import { StepStateService } from 'src/state-service/step-state.service';
+import { FormModule } from 'src/components/Form/form.module';
 
 @NgModule({
-  declarations: [AppComponent, FormComponent, StepperComponent],
-  imports: [BrowserModule, HttpClientModule, StepBarModule],
+  declarations: [AppComponent, StepperComponent],
+  imports: [BrowserModule, HttpClientModule, StepBarModule, FormModule],
   providers: [StepStateService],
   bootstrap: [AppComponent],
 })
