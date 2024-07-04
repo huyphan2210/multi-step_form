@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import AddOnAPI from 'src/api/add-on.api';
+import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
+import { Step, StepStateService } from 'src/state-service/step-state.service';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +7,13 @@ import AddOnAPI from 'src/api/add-on.api';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  constructor(private addOnAPI: AddOnAPI) {}
-
+  constructor(private stepStateService: StepStateService) {}
+  isStepperHasOneButton = false;
+  isStepperShown = false;
   ngOnInit() {
-    this.addOnAPI.getAddOns();
+    this.stepStateService.getStepState().subscribe((stepState) => {
+      this.isStepperHasOneButton = stepState.step === Step.FillInPersonalInfo;
+      this.isStepperShown = stepState.step !== Step.ThankYou;
+    });
   }
 }

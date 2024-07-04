@@ -10,10 +10,18 @@
     justify-content: center;
     align-items: center;
     main {
+      display: flex;
       max-width: 64rem;
       padding: 1rem;
       background-color: white;
       border-radius: var(--border-radius);
+      height: 50vh;
+      min-height: 30rem;
+      max-height: 33.75rem;
+
+      .form-wrapper {
+        position: relative;
+      }
     }
   }
 }

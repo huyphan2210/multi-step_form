@@ -1,5 +1,10 @@
 ﻿<main>
   <step-bar></step-bar>
-  <form-component></form-component>
-  <stepper></stepper>
+  <div class="form-wrapper">
+    <form-component></form-component>
+    <stepper
+      *ngIf="isStepperShown"
+      [className]="isStepperHasOneButton ? 'has-one-button' : ''"
+    ></stepper>
+  </div>
 </main>
