@@ -5,6 +5,7 @@ import { PersonalInfoContentComponent } from './PersonalInfoContent/personal-inf
 import { PlanContentComponent } from './PlanContent/plan-content.component';
 import { AddOnContentComponent } from './AddOnContent/add-on-content.component';
 import { ThankYouContentComponent } from './ThankYouContent/thank-you-content.component';
+import { ConfirmContentComponent } from './ConfirmContent/confirm-content.component';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { ThankYouContentComponent } from './ThankYouContent/thank-you-content.co
     PersonalInfoContentComponent,
     PlanContentComponent,
     AddOnContentComponent,
+    ConfirmContentComponent,
     ThankYouContentComponent,
   ],
   imports: [CommonModule],
