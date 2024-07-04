@@ -1,0 +1,37 @@
+:host {
+  position: fixed;
+  display: flex;
+  bottom: 0;
+  right: 0;
+  background-color: white;
+  padding: 2rem 1rem;
+  width: calc(100% - 2rem);
+  align-items: center;
+  justify-content: space-between;
+
+  &.has-one-button {
+    justify-content: right;
+  }
+
+  button {
+    border: none;
+    background-color: transparent;
+
+    &:last-child {
+      background-color: var(--marine-blue);
+      padding: 1rem;
+      border-radius: 0.5rem;
+      color: white;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+@media screen and (min-width: 64rem) {
+  :host {
+    position: absolute;
+  }
+}

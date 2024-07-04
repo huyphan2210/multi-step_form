@@ -1,0 +1,6 @@
+<button *ngIf="currentStep !== step.FillInPersonalInfo" type="button">
+  Go back
+</button>
+<button type="button">
+  {{ currentStep !== step.Confirm ? "Next step" : "Confirm" }}
+</button>
