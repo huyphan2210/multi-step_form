@@ -1,4 +1,17 @@
 :host {
   display: block;
-  background-color: white;
+  padding-inline: 1rem;
+  transform: translateY(-4rem);
+
+  form {
+    background-color: white;
+    padding: 2rem 1rem;
+    border-radius: var(--border-radius);
+  }
+}
+
+@media screen and (min-width: 64rem) {
+  :host {
+    transform: none;
+  }
 }

@@ -8,7 +8,10 @@ import { Step, StepStateService } from 'src/state-service/step-state.service';
 })
 export class FormComponent implements OnInit {
   currentStep: Step = Step.FillInPersonalInfo;
+  step = Step;
+
   constructor(private stepStateService: StepStateService) {}
+
   ngOnInit() {
     this.stepStateService.getStepState().subscribe((stepState) => {
       this.currentStep = stepState.step;
