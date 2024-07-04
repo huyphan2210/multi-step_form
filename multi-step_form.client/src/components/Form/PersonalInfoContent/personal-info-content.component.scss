@@ -1,2 +1,36 @@
 :host {
+  display: block;
+
+  .input {
+    &-group {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    &-wrapper {
+      label {
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: var(--marine-blue);
+      }
+
+      input {
+        display: block;
+        margin-top: 0.5rem;
+        padding-inline: 1rem;
+        padding-block: 1rem;
+        width: calc(100% - 2rem);
+        font-size: 1rem;
+        font-weight: 500;
+        border: none;
+        outline: solid 0.125rem var(--cool-gray);
+        border-radius: 0.125rem;
+
+        &:focus-within {
+          outline-color: var(--pastel-blue);
+        }
+      }
+    }
+  }
 }
