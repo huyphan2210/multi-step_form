@@ -6,6 +6,7 @@ import { PlanContentComponent } from './PlanContent/plan-content.component';
 import { AddOnContentComponent } from './AddOnContent/add-on-content.component';
 import { ThankYouContentComponent } from './ThankYouContent/thank-you-content.component';
 import { ConfirmContentComponent } from './ConfirmContent/confirm-content.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { ConfirmContentComponent } from './ConfirmContent/confirm-content.compon
     ConfirmContentComponent,
     ThankYouContentComponent,
   ],
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   exports: [FormComponent],
 })
 export class FormModule {}

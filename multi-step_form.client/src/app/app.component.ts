@@ -8,8 +8,10 @@ import { Step, StepStateService } from 'src/state-service/step-state.service';
 })
 export class AppComponent implements OnInit {
   constructor(private stepStateService: StepStateService) {}
+
   isStepperHasOneButton = false;
   isStepperShown = false;
+
   ngOnInit() {
     this.stepStateService.getStepState().subscribe((stepState) => {
       this.isStepperHasOneButton = stepState.step === Step.FillInPersonalInfo;

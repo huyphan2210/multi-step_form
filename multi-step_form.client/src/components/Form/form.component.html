@@ -1,5 +1,8 @@
-<form [ngSwitch]="currentStep">
-  <personal-info-content *ngSwitchCase="step.FillInPersonalInfo" />
+<form [ngSwitch]="currentStep" [formGroup]="form">
+  <personal-info-content
+    *ngSwitchCase="step.FillInPersonalInfo"
+    [form]="form"
+  />
   <plan-content *ngSwitchCase="step.SelectPlan" />
   <add-on-content *ngSwitchCase="step.SelectAddOn" />
   <confirm-content *ngSwitchCase="step.Confirm" />

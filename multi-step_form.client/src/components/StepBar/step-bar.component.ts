@@ -13,6 +13,8 @@ interface StepInfo {
   styleUrls: ['./step-bar.component.scss'],
 })
 export class StepBarComponent implements OnInit {
+  constructor(private stepStateService: StepStateService) {}
+
   currentStep: Step = Step.FillInPersonalInfo;
   stepList: StepInfo[] = [
     {
@@ -36,8 +38,6 @@ export class StepBarComponent implements OnInit {
       stepName: 'Summary',
     },
   ];
-
-  constructor(private stepStateService: StepStateService) {}
 
   ngOnInit() {
     this.stepStateService.getStepState().subscribe((stepState) => {

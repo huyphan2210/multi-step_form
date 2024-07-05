@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import {
+  FormStateService,
+  PersonalInfoFormControls,
+} from 'src/state-service/form-state.service';
 import { Step, StepStateService } from 'src/state-service/step-state.service';
 
 @Component({
@@ -7,14 +12,24 @@ import { Step, StepStateService } from 'src/state-service/step-state.service';
   styleUrls: ['./form.component.scss'],
 })
 export class FormComponent implements OnInit {
+  constructor(
+    private stepStateService: StepStateService,
+    private formStateService: FormStateService
+  ) {}
+
   currentStep: Step = Step.FillInPersonalInfo;
   step = Step;
-
-  constructor(private stepStateService: StepStateService) {}
+  form!: FormGroup<PersonalInfoFormControls>;
 
   ngOnInit() {
     this.stepStateService.getStepState().subscribe((stepState) => {
       this.currentStep = stepState.step;
     });
+
+    this.formStateService
+      .getFormStateState()
+      .subscribe((formState: FormGroup<PersonalInfoFormControls>) => {
+        this.form = formState;
+      });
   }
 }

@@ -1,18 +1,33 @@
-<section>
+<section [formGroup]="form">
   <h1>Personal Info</h1>
   <p>Please provide your name, email address and phone number.</p>
   <div class="input-group">
     <div class="input-wrapper">
       <label for="email">Email Address</label>
-      <input id="email" placeholder="e.g. stephenking@lorem.com" type="email" />
+      <input
+        id="email"
+        placeholder="e.g. stephenking@lorem.com"
+        type="email"
+        formControlName="email"
+      />
     </div>
     <div class="input-wrapper">
       <label for="name">Name</label>
-      <input id="name" placeholder="e.g. Stephen King" type="text" />
+      <input
+        id="name"
+        placeholder="e.g. Stephen King"
+        type="text"
+        formControlName="name"
+      />
     </div>
     <div class="input-wrapper">
       <label for="phone">Phone</label>
-      <input id="phone" placeholder="e.g. +1 234 567 890" type="tel" />
+      <input
+        id="phone"
+        placeholder="e.g. +1 234 567 890"
+        type="tel"
+        formControlName="phone"
+      />
     </div>
   </div>
 </section>
