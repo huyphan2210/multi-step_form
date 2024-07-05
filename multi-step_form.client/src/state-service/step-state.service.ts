@@ -29,7 +29,42 @@ export class StepStateService {
     return this.stepState$.asObservable();
   }
 
-  setStepState(newStep: Step) {
-    this.stepState$.next({ step: newStep });
+  setNextStepState() {
+    let nextStep = Step.FillInPersonalInfo;
+    switch (this.stepState$.getValue().step) {
+      case Step.FillInPersonalInfo:
+        nextStep = Step.SelectPlan;
+        break;
+      case Step.SelectPlan:
+        nextStep = Step.SelectAddOn;
+        break;
+      case Step.SelectAddOn:
+        nextStep = Step.Confirm;
+        break;
+      case Step.Confirm:
+        nextStep = Step.ThankYou;
+        break;
+      default:
+        return;
+    }
+    this.stepState$.next({ step: nextStep });
+  }
+
+  setPreviousStepState() {
+    let prevStep: Step | null = null;
+    switch (this.stepState$.getValue().step) {
+      case Step.SelectPlan:
+        prevStep = Step.FillInPersonalInfo;
+        break;
+      case Step.SelectAddOn:
+        prevStep = Step.SelectPlan;
+        break;
+      case Step.Confirm:
+        prevStep = Step.SelectAddOn;
+        break;
+      default:
+        return;
+    }
+    this.stepState$.next({ step: prevStep });
   }
 }
