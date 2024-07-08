@@ -1,3 +1,9 @@
 :host {
-
+  section {
+    .plans {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
 }

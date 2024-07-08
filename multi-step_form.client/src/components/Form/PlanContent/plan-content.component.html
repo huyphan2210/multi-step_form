@@ -1,1 +1,7 @@
-<section></section>
+<section [formGroup]="form">
+  <h1>Select your plan</h1>
+  <p>You have the option of monthly or yearly billing.</p>
+  <div class="plans">
+    <plan *ngFor="let plan of plans" [form]="form" [plan]="plan" />
+  </div>
+</section>

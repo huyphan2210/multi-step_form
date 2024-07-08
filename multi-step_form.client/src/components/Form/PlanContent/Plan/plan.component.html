@@ -1,0 +1,23 @@
+<div
+  class="plan"
+  [formGroup]="form"
+  [class]="form.get('planId')?.value === plan.id ? 'active' : ''"
+>
+  <label class="plan__info">
+    <input
+      type="checkbox"
+      formControlName="planId"
+      [value]="plan.id"
+      (click)="setPlan()"
+    />
+    <img [src]="plan.img" loading="lazy" [alt]="plan.name" />
+    <div class="plan__info__text">
+      <h2>{{ plan.name }}</h2>
+      <p *ngIf="priceType === 'month'">${{ plan.monthlyPrice }}/mo</p>
+      <div *ngIf="priceType === 'year'">
+        <p [id]="plan.yearlyPrice">${{ plan.yearlyPrice }}/yr</p>
+        <label [for]="plan.yearlyPrice">2 months free</label>
+      </div>
+    </div>
+  </label>
+</div>
