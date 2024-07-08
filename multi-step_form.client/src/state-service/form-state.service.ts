@@ -30,6 +30,7 @@ export const personalInfoKeys: Record<keyof PersonalInfoRequest, string> = {
 })
 export class FormStateService {
   private formState$: BehaviorSubject<FormGroup>;
+
   form: FormGroup<PersonalInfoFormControls>;
 
   constructor(private formBuilder: FormBuilder) {
@@ -46,7 +47,7 @@ export class FormStateService {
     this.formState$ = new BehaviorSubject<FormGroup>(this.form);
   }
 
-  getFormStateState() {
+  getFormState() {
     return this.formState$.asObservable();
   }
 }
