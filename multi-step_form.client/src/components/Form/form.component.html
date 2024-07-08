@@ -3,7 +3,7 @@
     *ngSwitchCase="step.FillInPersonalInfo"
     [form]="form"
   />
-  <plan-content *ngSwitchCase="step.SelectPlan" />
+  <plan-content *ngSwitchCase="step.SelectPlan" [form]="form" />
   <add-on-content *ngSwitchCase="step.SelectAddOn" />
   <confirm-content *ngSwitchCase="step.Confirm" />
   <thank-you-content *ngSwitchCase="step.ThankYou" />

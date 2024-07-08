@@ -27,7 +27,7 @@ export class FormComponent implements OnInit {
     });
 
     this.formStateService
-      .getFormStateState()
+      .getFormState()
       .subscribe((formState: FormGroup<PersonalInfoFormControls>) => {
         this.form = formState;
       });
