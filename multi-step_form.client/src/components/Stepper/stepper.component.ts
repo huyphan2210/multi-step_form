@@ -17,7 +17,6 @@ export class StepperComponent implements OnInit {
     private stepStateService: StepStateService,
     private formStateService: FormStateService
   ) {}
-
   currentStep: Step = Step.FillInPersonalInfo;
   step = Step;
   isNextButtonDisabled = false;

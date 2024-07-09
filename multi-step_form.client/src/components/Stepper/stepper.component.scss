@@ -13,6 +13,10 @@
     justify-content: right;
   }
 
+  &.sticky {
+    position: sticky;
+  }
+
   button {
     border: none;
     background-color: transparent;
@@ -38,5 +42,7 @@
 @media screen and (min-width: 64rem) {
   :host {
     position: absolute;
+    width: calc(100% - 10rem);
+    left: 4rem;
   }
 }
