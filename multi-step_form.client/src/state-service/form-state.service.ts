@@ -9,12 +9,15 @@ import {
 import { BehaviorSubject } from 'rxjs';
 import { PersonalInfoRequest } from 'src/swagger/api';
 
+export type PriceType = 'month' | 'year';
+
 export interface PersonalInfoFormControls {
   name: AbstractControl<string | null>;
   email: AbstractControl<string | null>;
   phone: AbstractControl<string | null>;
   addOnIds: AbstractControl<string[] | null>;
   planId: AbstractControl<string | null>;
+  currentPriceType: AbstractControl<PriceType | null>;
 }
 
 export const personalInfoKeys: Record<keyof PersonalInfoRequest, string> = {
@@ -43,6 +46,7 @@ export class FormStateService {
       phone: new FormControl<string | null>('', Validators.required),
       planId: new FormControl<string | null>('', Validators.required),
       addOnIds: new FormControl<string[] | null>([]),
+      currentPriceType: new FormControl<PriceType>('month'),
     });
     this.formState$ = new BehaviorSubject<FormGroup>(this.form);
   }

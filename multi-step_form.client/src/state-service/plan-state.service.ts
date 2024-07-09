@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import PlanAPI from 'src/api/plan.api';
 import { Plan } from 'src/swagger/api';
-
-export type PriceType = 'month' | 'year';
+import { PriceType } from './form-state.service';
 
 @Injectable({
   providedIn: 'root',
