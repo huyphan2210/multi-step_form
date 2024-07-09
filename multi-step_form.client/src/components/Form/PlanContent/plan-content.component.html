@@ -2,6 +2,33 @@
   <h1>Select your plan</h1>
   <p>You have the option of monthly or yearly billing.</p>
   <div class="plans">
-    <plan *ngFor="let plan of plans" [form]="form" [plan]="plan" />
+    <plan
+      *ngFor="let plan of plans"
+      [form]="form"
+      [plan]="plan"
+      [priceType]="currentPriceType"
+      [isCurrentPlan]="form.get('planId')?.value === plan.id"
+    />
+  </div>
+  <div class="plan-type">
+    <span [class]="currentPriceType === 'month' ? 'is-active' : ''"
+      >Monthly</span
+    >
+    <label
+      [className]="
+        currentPriceType === 'year'
+          ? 'plan-type__toggle year'
+          : 'plan-type__toggle'
+      "
+    >
+      <input
+        [checked]="currentPriceType !== 'month'"
+        type="radio"
+        [value]="currentPriceType"
+        formControlName="currentPriceType"
+        (click)="changePlanType()"
+      />
+    </label>
+    <span [class]="currentPriceType === 'year' ? 'is-active' : ''">Yearly</span>
   </div>
 </section>

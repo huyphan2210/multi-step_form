@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import {
-  PlanStateService,
-  PriceType,
-} from 'src/state-service/plan-state.service';
+import { PlanStateService } from 'src/state-service/plan-state.service';
 import { Plan } from 'src/swagger/api';
-import { PersonalInfoFormControls } from 'src/state-service/form-state.service';
+import {
+  PersonalInfoFormControls,
+  PriceType,
+} from 'src/state-service/form-state.service';
 
 @Component({
   selector: 'plan-content',
@@ -31,6 +31,14 @@ export class PlanContentComponent implements OnInit {
   ngOnInit() {
     if (this.plans.length === 0) {
       this.planStateService.getPlans();
+    }
+  }
+
+  changePlanType() {
+    if (this.currentPriceType === 'month') {
+      this.currentPriceType = 'year';
+    } else {
+      this.currentPriceType = 'month';
     }
   }
 }
