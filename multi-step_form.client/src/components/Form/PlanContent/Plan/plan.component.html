@@ -1,14 +1,10 @@
-<div
-  class="plan"
-  [formGroup]="form"
-  [class]="form.get('planId')?.value === plan.id ? 'active' : ''"
->
+<div class="plan" [formGroup]="form" [class]="isCurrentPlan ? 'active' : ''">
   <label class="plan__info">
     <input
-      type="checkbox"
+      [checked]="isCurrentPlan"
+      type="radio"
       formControlName="planId"
       [value]="plan.id"
-      (click)="setPlan()"
     />
     <img [src]="plan.img" loading="lazy" [alt]="plan.name" />
     <div class="plan__info__text">
