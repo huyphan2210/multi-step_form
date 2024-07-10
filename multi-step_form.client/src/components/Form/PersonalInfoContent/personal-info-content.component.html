@@ -3,8 +3,34 @@
   <p>Please provide your name, email address and phone number.</p>
   <div class="input-group">
     <div class="input-wrapper">
-      <label for="email">Email Address</label>
+      <label
+        [ngClass]="{
+          invalid:
+            (form.get('email')?.value === '' &&
+              form.getError('required', 'email')) ||
+            form.getError('email', 'email')
+        }"
+        for="email"
+      >
+        <span>Email Address</span>
+        <span
+          *ngIf="
+            form.get('email')?.value === '' &&
+            form.getError('required', 'email')
+          "
+          >{{ requiredText }}</span
+        >
+        <span *ngIf="form.getError('email', 'email')"
+          >The email must be in the right format</span
+        ></label
+      >
       <input
+        [ngClass]="{
+          invalid:
+            (form.get('email')?.value === '' &&
+              form.getError('required', 'email')) ||
+            form.getError('email', 'email')
+        }"
         id="email"
         placeholder="e.g. stephenking@lorem.com"
         type="email"
@@ -12,8 +38,27 @@
       />
     </div>
     <div class="input-wrapper">
-      <label for="name">Name</label>
+      <label
+        [ngClass]="{
+          invalid:
+            form.get('name')?.value === '' && form.getError('required', 'name')
+        }"
+        for="name"
+      >
+        <span>Name</span>
+        <span
+          *ngIf="
+            form.get('name')?.value === '' && form.getError('required', 'name')
+          "
+          >{{ requiredText }}</span
+        >
+      </label>
       <input
+        [ngClass]="{
+          invalid:
+            form.get('name')?.value === '' && form.getError('required', 'name')
+        }"
+        for="name"
         id="name"
         placeholder="e.g. Stephen King"
         type="text"
@@ -21,8 +66,29 @@
       />
     </div>
     <div class="input-wrapper">
-      <label for="phone">Phone</label>
+      <label
+        [ngClass]="{
+          invalid:
+            form.get('phone')?.value === '' &&
+            form.getError('required', 'phone')
+        }"
+        for="phone"
+      >
+        <span>Phone</span>
+        <span
+          *ngIf="
+            form.get('phone')?.value === '' &&
+            form.getError('required', 'phone')
+          "
+          >{{ requiredText }}</span
+        >
+      </label>
       <input
+        [ngClass]="{
+          invalid:
+            form.get('phone')?.value === '' &&
+            form.getError('required', 'phone')
+        }"
         id="phone"
         placeholder="e.g. +1 234 567 890"
         type="tel"

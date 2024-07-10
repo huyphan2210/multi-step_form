@@ -11,8 +11,16 @@
     &-wrapper {
       label {
         font-size: 0.8rem;
-        font-weight: 500;
+        font-weight: 700;
         color: var(--marine-blue);
+        display: flex;
+        justify-content: space-between;
+
+        &.invalid {
+          span:last-child {
+            color: var(--red);
+          }
+        }
       }
 
       input {
@@ -20,15 +28,19 @@
         margin-top: 0.5rem;
         padding-inline: 1rem;
         padding-block: 1rem;
-        width: calc(100% - 2rem);
+        width: calc(100% - 2.25rem);
         font-size: 1rem;
         font-weight: 500;
-        border: none;
-        outline: solid 0.125rem var(--light-gray);
+        border: solid 0.125rem var(--light-gray);
         border-radius: 0.125rem;
 
         &:focus-within {
-          outline-color: var(--pastel-blue);
+          border-color: var(--pastel-blue);
+          outline: none;
+        }
+
+        &.invalid {
+          border-color: var(--red) !important;
         }
       }
     }

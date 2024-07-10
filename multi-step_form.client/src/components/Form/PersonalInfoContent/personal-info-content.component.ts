@@ -9,4 +9,6 @@ import { PersonalInfoFormControls } from 'src/state-service/form-state.service';
 })
 export class PersonalInfoContentComponent {
   @Input() form!: FormGroup<PersonalInfoFormControls>;
+
+  requiredText = 'This field is required';
 }
