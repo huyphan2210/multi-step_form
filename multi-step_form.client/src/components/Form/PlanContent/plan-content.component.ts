@@ -15,6 +15,7 @@ import {
 export class PlanContentComponent implements OnInit {
   @Input() form!: FormGroup<PersonalInfoFormControls>;
 
+  isLoadingContent = false;
   plans: Plan[] = [];
   currentPriceType: PriceType = 'month';
 
@@ -30,7 +31,15 @@ export class PlanContentComponent implements OnInit {
 
   ngOnInit() {
     if (this.plans.length === 0) {
-      this.planStateService.getPlans();
+      this.isLoadingContent = true;
+      this.planStateService
+        .getPlans()
+        .finally(() => (this.isLoadingContent = false));
+    }
+
+    const currentPriceTypeValue = this.form.get('currentPriceType')?.value;
+    if (currentPriceTypeValue) {
+      this.currentPriceType = currentPriceTypeValue as PriceType;
     }
   }
 
@@ -40,5 +49,6 @@ export class PlanContentComponent implements OnInit {
     } else {
       this.currentPriceType = 'month';
     }
+    this.form.patchValue({ currentPriceType: this.currentPriceType });
   }
 }
