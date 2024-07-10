@@ -4,6 +4,7 @@ import {
   FormBuilder,
   FormControl,
   FormGroup,
+  ValidatorFn,
   Validators,
 } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
@@ -38,13 +39,13 @@ export class FormStateService {
 
   constructor(private formBuilder: FormBuilder) {
     this.form = formBuilder.group<PersonalInfoFormControls>({
-      name: new FormControl<string | null>('', Validators.required),
-      email: new FormControl<string | null>('', [
+      name: new FormControl<string | null>(null, Validators.required),
+      email: new FormControl<string | null>(null, [
         Validators.required,
         Validators.email,
       ]),
-      phone: new FormControl<string | null>('', Validators.required),
-      planId: new FormControl<string | null>('', Validators.required),
+      phone: new FormControl<string | null>(null, Validators.required),
+      planId: new FormControl<string | null>(null, Validators.required),
       addOnIds: new FormControl<string[] | null>([]),
       currentPriceType: new FormControl<PriceType>('month'),
     });
