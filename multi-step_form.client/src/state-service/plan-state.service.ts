@@ -25,7 +25,7 @@ export class PlanStateService {
   }
 
   getPlans() {
-    this.planAPI.getPlans().then((plans) => {
+    return this.planAPI.getPlans().then((plans) => {
       this.plansState$.next(plans);
     });
   }
