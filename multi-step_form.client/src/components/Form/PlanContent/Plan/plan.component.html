@@ -9,8 +9,8 @@
     <img [src]="plan.img" loading="lazy" [alt]="plan.name" />
     <div class="plan__info__text">
       <h2>{{ plan.name }}</h2>
-      <p *ngIf="priceType === 'month'">${{ plan.monthlyPrice }}/mo</p>
-      <div *ngIf="priceType === 'year'">
+      <p *ngIf="priceType === 0">${{ plan.monthlyPrice }}/mo</p>
+      <div *ngIf="priceType === 1">
         <p [id]="plan.yearlyPrice">${{ plan.yearlyPrice }}/yr</p>
         <label [for]="plan.yearlyPrice">2 months free</label>
       </div>

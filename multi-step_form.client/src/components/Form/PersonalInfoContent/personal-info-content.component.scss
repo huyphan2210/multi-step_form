@@ -42,6 +42,10 @@
         &.invalid {
           border-color: var(--red) !important;
         }
+
+        &:disabled {
+          cursor: not-allowed;
+        }
       }
     }
   }

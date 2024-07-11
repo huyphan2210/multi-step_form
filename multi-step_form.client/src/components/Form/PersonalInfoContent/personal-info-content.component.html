@@ -1,5 +1,11 @@
 <section [formGroup]="form">
-  <h1>Personal Info</h1>
+  <h1>
+    {{
+      form.get("isUpdatingExistedPersonalInfo")?.value === true
+        ? "Update "
+        : ""
+    }}Personal Info
+  </h1>
   <p>Please provide your name, email address and phone number.</p>
   <div class="input-group">
     <div class="input-wrapper">
