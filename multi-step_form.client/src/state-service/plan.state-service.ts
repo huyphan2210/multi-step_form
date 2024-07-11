@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import PlanAPI from 'src/api/plan.api';
 import { Plan } from 'src/swagger/api';
-import { PriceType } from './form-state.service';
+import { PriceType } from 'src/swagger/api';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +12,7 @@ export class PlanStateService {
     []
   );
   private priceTypeState$: BehaviorSubject<PriceType> =
-    new BehaviorSubject<PriceType>('month');
+    new BehaviorSubject<PriceType>(0);
 
   constructor(private planAPI: PlanAPI) {}
 
@@ -32,10 +32,10 @@ export class PlanStateService {
 
   changePriceType() {
     const currentPriceType = this.priceTypeState$.getValue();
-    if (currentPriceType === 'month') {
-      this.priceTypeState$.next('year');
+    if (currentPriceType === 0) {
+      this.priceTypeState$.next(1);
     } else {
-      this.priceTypeState$.next('month');
+      this.priceTypeState$.next(0);
     }
   }
 }
