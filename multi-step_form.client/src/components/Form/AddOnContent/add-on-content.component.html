@@ -1,1 +1,10 @@
-<section></section>
+<section [formGroup]="form">
+  <h1>
+    {{
+      form.get("isUpdatingExistedPersonalInfo")?.value === true
+        ? "Update "
+        : "Pick "
+    }}add-ons
+  </h1>
+  <p>Add-ons help enhance your gaming experience.</p>
+</section>

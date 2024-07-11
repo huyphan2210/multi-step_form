@@ -4,7 +4,7 @@
     [form]="form"
   />
   <plan-content *ngSwitchCase="step.SelectPlan" [form]="form" />
-  <add-on-content *ngSwitchCase="step.SelectAddOn" />
+  <add-on-content *ngSwitchCase="step.SelectAddOn" [form]="form" />
   <confirm-content *ngSwitchCase="step.Confirm" />
   <thank-you-content *ngSwitchCase="step.ThankYou" />
 </form>
