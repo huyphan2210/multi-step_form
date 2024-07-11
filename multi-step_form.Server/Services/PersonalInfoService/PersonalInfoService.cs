@@ -26,6 +26,14 @@ namespace multi_step_form.Server.Services.PersonalInfoService
 
         public async Task<PersonalInfoResponse> RegisterNewPersonalInfoAsync(PersonalInfoRequest personalInfoRequest)
         {
+            var personalInfo = await GetPersonalInfoAsync(personalInfoRequest.Email);
+
+            if (personalInfo != null)
+            {
+                var updatedPersonalInfo = await _personalInfoCollection.UpdatePersonalInfo(personalInfoRequest);
+                return updatedPersonalInfo.ParsePersonalInfoResponse();
+            }
+
             var createdPersonalInfo = await _personalInfoCollection.RegisterNewPersonalInfoAsync(personalInfoRequest);
             return createdPersonalInfo.ParsePersonalInfoResponse();
         }

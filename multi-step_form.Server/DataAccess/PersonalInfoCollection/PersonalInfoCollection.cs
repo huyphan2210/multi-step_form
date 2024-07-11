@@ -39,5 +39,19 @@ namespace multi_step_form.Server.DataAccess.PersonalInfoCollection
 
             throw new Exception("A snapshot doesn't exist");
         }
+
+        public async Task<PersonalInfo> UpdatePersonalInfo(PersonalInfoRequest personalInfoRequest)
+        {
+            var newPersonalInfo = personalInfoRequest.ParseRequestToPersonalInfo();
+            var query = _personalInfoReference.WhereEqualTo("email", personalInfoRequest.Email);
+            var snapshot = await query.GetSnapshotAsync();
+            var docRef = snapshot.Documents.ToList().FirstOrDefault()?.Reference;
+            if (docRef != null)
+            { 
+                await docRef.SetAsync(personalInfoRequest);
+            }
+
+            return newPersonalInfo;
+        }
     }
 }

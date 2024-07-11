@@ -7,5 +7,7 @@ namespace multi_step_form.Server.DataAccess.PersonalInfoCollection
     {
         public Task<PersonalInfo?> GetPersonalInfoByEmailAsync(string email);
         public Task<PersonalInfo> RegisterNewPersonalInfoAsync(PersonalInfoRequest personalInfoRequest);
+
+        Task<PersonalInfo> UpdatePersonalInfo(PersonalInfoRequest personalInfoRequest);
     }
 }
