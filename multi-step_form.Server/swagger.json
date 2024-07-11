@@ -161,6 +161,9 @@
         },
         "planId": {
           "type": "string"
+        },
+        "currentPriceType": {
+          "$ref": "#/definitions/PriceType"
         }
       }
     },
@@ -184,6 +187,9 @@
           "items": {
             "type": "string"
           }
+        },
+        "currentPriceType": {
+          "$ref": "#/definitions/PriceType"
         }
       }
     },
@@ -208,6 +214,14 @@
           "type": "string"
         }
       }
+    },
+    "PriceType": {
+      "format": "int32",
+      "enum": [
+        0,
+        1
+      ],
+      "type": "integer"
     }
   }
 }

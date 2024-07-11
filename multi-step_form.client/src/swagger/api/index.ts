@@ -213,6 +213,9 @@ export interface PersonalInfoRequest {
 
   /**  */
   planId?: string;
+
+  /**  */
+  currentPriceType?: PriceType;
 }
 
 export interface PersonalInfoResponse {
@@ -230,6 +233,9 @@ export interface PersonalInfoResponse {
 
   /**  */
   addOnIds?: string[];
+
+  /**  */
+  currentPriceType?: PriceType;
 }
 
 export interface Plan {
@@ -248,3 +254,5 @@ export interface Plan {
   /**  */
   img?: string;
 }
+
+export type PriceType = 0 | 1;

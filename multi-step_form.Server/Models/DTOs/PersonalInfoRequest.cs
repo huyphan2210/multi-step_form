@@ -1,4 +1,6 @@
-﻿namespace multi_step_form.Server.Models.DTOs
+﻿using multi_step_form.Server.Models.Enums;
+
+namespace multi_step_form.Server.Models.DTOs
 {
     public class PersonalInfoRequest
     {
@@ -7,6 +9,7 @@
         public string Phone { get; set; } = string.Empty;
         public List<string>? AddOnIds { get; set; }
         public string PlanId { get; set; } = string.Empty;
+        public PriceType CurrentPriceType { get; set; }
 
         public PersonalInfo ParseRequestToPersonalInfo()
         {
@@ -17,7 +20,8 @@
                 Email = Email,
                 Phone = Phone,
                 AddOnIds = AddOnIds,
-                PlanId = PlanId
+                PlanId = PlanId,
+                CurrentPriceType = CurrentPriceType
             };
         }
     }

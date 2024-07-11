@@ -1,5 +1,6 @@
 ﻿using Google.Cloud.Firestore;
 using multi_step_form.Server.Models.DTOs;
+using multi_step_form.Server.Models.Enums;
 
 namespace multi_step_form.Server.Models
 {
@@ -18,6 +19,8 @@ namespace multi_step_form.Server.Models
         public string? PlanId { get; set; }
         [FirestoreProperty("addOnIds")]
         public List<string>? AddOnIds { get; set; }
+        [FirestoreProperty("currentPriceType")]
+        public PriceType CurrentPriceType { get; set; } = PriceType.Monthly;
 
         public PersonalInfoResponse ParsePersonalInfoResponse()
         {
@@ -27,7 +30,8 @@ namespace multi_step_form.Server.Models
                 Email = Email,
                 Phone = Phone,
                 PlanId = PlanId,
-                AddOnIds = AddOnIds
+                AddOnIds = AddOnIds,
+                CurrentPriceType = CurrentPriceType
             };
         }
     }

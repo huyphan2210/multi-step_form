@@ -1,4 +1,6 @@
-﻿namespace multi_step_form.Server.Models.DTOs
+﻿using multi_step_form.Server.Models.Enums;
+
+namespace multi_step_form.Server.Models.DTOs
 {
     public class PersonalInfoResponse
     {
@@ -7,5 +9,6 @@
         public string Phone { get; set; } = string.Empty;
         public string? PlanId { get; set; }
         public List<string>? AddOnIds { get; set; }
+        public PriceType CurrentPriceType { get; set; }
     }
 }
