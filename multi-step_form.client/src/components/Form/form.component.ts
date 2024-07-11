@@ -3,8 +3,8 @@ import { FormGroup } from '@angular/forms';
 import {
   FormStateService,
   PersonalInfoFormControls,
-} from 'src/state-service/form-state.service';
-import { Step, StepStateService } from 'src/state-service/step-state.service';
+} from 'src/state-service/form.state-service';
+import { Step, StepStateService } from 'src/state-service/step.state-service';
 
 @Component({
   selector: 'form-component',

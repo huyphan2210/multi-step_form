@@ -4,8 +4,8 @@ import {
   FormStateService,
   PersonalInfoFormControls,
   personalInfoKeys,
-} from 'src/state-service/form-state.service';
-import { Step, StepStateService } from 'src/state-service/step-state.service';
+} from 'src/state-service/form.state-service';
+import { Step, StepStateService } from 'src/state-service/step.state-service';
 
 @Component({
   selector: 'stepper',

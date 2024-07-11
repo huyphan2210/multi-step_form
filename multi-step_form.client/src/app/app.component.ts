@@ -1,12 +1,11 @@
 import {
-  AfterViewInit,
   ChangeDetectorRef,
   Component,
   ElementRef,
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { Step, StepStateService } from 'src/state-service/step-state.service';
+import { Step, StepStateService } from 'src/state-service/step.state-service';
 
 @Component({
   selector: 'app-root',

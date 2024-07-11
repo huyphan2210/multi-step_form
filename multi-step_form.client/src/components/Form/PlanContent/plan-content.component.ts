@@ -1,11 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { PlanStateService } from 'src/state-service/plan-state.service';
-import { Plan } from 'src/swagger/api';
-import {
-  PersonalInfoFormControls,
-  PriceType,
-} from 'src/state-service/form-state.service';
+import { PlanStateService } from 'src/state-service/plan.state-service';
+import { Plan, PriceType } from 'src/swagger/api';
+import { PersonalInfoFormControls } from 'src/state-service/form.state-service';
 
 @Component({
   selector: 'plan-content',
@@ -17,7 +14,7 @@ export class PlanContentComponent implements OnInit {
 
   isLoadingContent = false;
   plans: Plan[] = [];
-  currentPriceType: PriceType = 'month';
+  currentPriceType: PriceType = 0;
 
   constructor(private planStateService: PlanStateService) {
     this.planStateService
@@ -44,10 +41,10 @@ export class PlanContentComponent implements OnInit {
   }
 
   changePlanType() {
-    if (this.currentPriceType === 'month') {
-      this.currentPriceType = 'year';
+    if (this.currentPriceType === 0) {
+      this.currentPriceType = 1;
     } else {
-      this.currentPriceType = 'month';
+      this.currentPriceType = 0;
     }
     this.form.patchValue({ currentPriceType: this.currentPriceType });
   }

@@ -1,5 +1,11 @@
 <section [formGroup]="form">
-  <h1>Select your plan</h1>
+  <h1>
+    {{
+      form.get("isUpdatingExistedPersonalInfo")?.value === true
+        ? "Update "
+        : "Select "
+    }}your plan
+  </h1>
   <p>You have the option of monthly or yearly billing.</p>
   <ng-container *ngIf="!isLoadingContent; else loading">
     <div class="plans">
@@ -12,26 +18,22 @@
       />
     </div>
     <div class="plan-type">
-      <span [class]="currentPriceType === 'month' ? 'is-active' : ''"
-        >Monthly</span
-      >
+      <span [class]="currentPriceType === 0 ? 'is-active' : ''">Monthly</span>
       <label
         [className]="
-          currentPriceType === 'year'
+          currentPriceType === 1
             ? 'plan-type__toggle year'
             : 'plan-type__toggle'
         "
       >
         <input
-          [checked]="currentPriceType !== 'month'"
+          [checked]="currentPriceType !== 0"
           type="radio"
           formControlName="currentPriceType"
           (click)="changePlanType()"
         />
       </label>
-      <span [class]="currentPriceType === 'year' ? 'is-active' : ''"
-        >Yearly</span
-      >
+      <span [class]="currentPriceType === 1 ? 'is-active' : ''">Yearly</span>
     </div>
   </ng-container>
   <ng-template #loading>

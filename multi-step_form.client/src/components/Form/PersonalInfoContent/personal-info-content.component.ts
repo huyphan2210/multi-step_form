@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { PersonalInfoFormControls } from 'src/state-service/form-state.service';
+import { PersonalInfoFormControls } from 'src/state-service/form.state-service';
 
 @Component({
   selector: 'personal-info-content',
