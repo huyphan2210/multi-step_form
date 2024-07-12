@@ -7,4 +7,17 @@
     }}add-ons
   </h1>
   <p>Add-ons help enhance your gaming experience.</p>
+  <ng-container *ngIf="!isLoadingContent; else loading">
+    <div class="add-ons">
+      <add-on
+        *ngFor="let addOn of addOns"
+        [addOn]="addOn"
+        [form]="form"
+        [isActive]="isAddOnActive(addOn.id!)"
+      />
+    </div>
+  </ng-container>
+  <ng-template #loading>
+    <loading loadingContent="Getting add-ons for you..." />
+  </ng-template>
 </section>

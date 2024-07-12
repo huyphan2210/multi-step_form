@@ -14,7 +14,7 @@ export class AddOnContentComponent implements OnInit {
   @Input() form!: FormGroup<PersonalInfoFormControls>;
 
   addOns: AddOn[] = [];
-
+  isLoadingContent = false;
   constructor(private addOnsStateService: AddOnsStateService) {
     this.addOnsStateService.getAddOnsState().subscribe((addOns) => {
       this.addOns = addOns;
@@ -23,7 +23,14 @@ export class AddOnContentComponent implements OnInit {
 
   ngOnInit() {
     if (this.addOns.length === 0) {
-      this.addOnsStateService.getAddOns();
+      this.isLoadingContent = true;
+      this.addOnsStateService
+        .getAddOns()
+        .finally(() => (this.isLoadingContent = false));
     }
+  }
+
+  isAddOnActive(id: string) {
+    return this.addOns.map((addOn) => addOn.id).includes(id);
   }
 }
