@@ -1,0 +1,5 @@
+<label [formGroup]="form" class="add-on" [ngClass]="{ active: isActive }">
+  <input type="radio" [value]="addOn.id" (change)="handleAddOn($event)" />
+  <div class="add-on__checkbox"></div>
+  <div class="add-on__info"></div>
+</label>

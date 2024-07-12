@@ -1,0 +1,24 @@
+:host {
+  display: block;
+  .add-on {
+    padding: 1rem;
+    display: flex;
+    cursor: pointer;
+    border-radius: var(--border-radius);
+    border: solid 0.125rem var(--light-gray);
+
+    input {
+      display: none;
+    }
+
+    &.active {
+      border-color: var(--pastel-blue);
+      background-color: var(--magnolia);
+    }
+
+    &:hover {
+      border-color: var(--pastel-blue);
+      cursor: pointer;
+    }
+  }
+}
