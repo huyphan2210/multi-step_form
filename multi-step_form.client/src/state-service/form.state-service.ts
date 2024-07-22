@@ -35,6 +35,9 @@ export const personalInfoKeys: Record<keyof PersonalInfoRequest, string> = {
 })
 export class FormStateService {
   private formState$: BehaviorSubject<FormGroup>;
+  private emailFetchingState$: BehaviorSubject<boolean> = new BehaviorSubject(
+    false
+  );
 
   form: FormGroup<PersonalInfoFormControls>;
 
@@ -47,6 +50,7 @@ export class FormStateService {
       if (emailControl.valid && emailControl.value) {
         nameControl?.disable();
         phoneControl?.disable();
+        this.emailFetchingState$.next(true);
         personalInfoApi
           .getPersonalInfo(emailControl.value)
           .then((personalInfo) => {
@@ -65,6 +69,7 @@ export class FormStateService {
           .finally(() => {
             nameControl?.enable();
             phoneControl?.enable();
+            this.emailFetchingState$.next(false);
           });
       } else {
         nameControl?.disable();
@@ -95,12 +100,15 @@ export class FormStateService {
       currentPriceType: new FormControl<PriceType>(0),
       isUpdatingExistedPersonalInfo: new FormControl<boolean>(false),
     });
-
     this.validateEmailIfExisted(personalInfoApi);
     this.formState$ = new BehaviorSubject<FormGroup>(this.form);
   }
 
   getFormState() {
     return this.formState$.asObservable();
+  }
+
+  getEmailFetchingState() {
+    return this.emailFetchingState$.asObservable();
   }
 }
