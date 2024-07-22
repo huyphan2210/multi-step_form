@@ -8,13 +8,14 @@
   </h1>
   <p>Please provide your name, email address and phone number.</p>
   <div class="input-group">
-    <div class="input-wrapper">
+    <div class="input-wrapper email">
       <label
         [ngClass]="{
           invalid:
             (form.get('email')?.value === '' &&
               form.getError('required', 'email')) ||
-            form.getError('email', 'email')
+            form.getError('email', 'email'),
+          fetching: isEmailFetching
         }"
         for="email"
       >
@@ -28,8 +29,8 @@
         >
         <span *ngIf="form.getError('email', 'email')"
           >The email must be in the right format</span
-        ></label
-      >
+        >
+      </label>
       <input
         [ngClass]="{
           invalid:
@@ -42,6 +43,7 @@
         type="email"
         formControlName="email"
       />
+      <loading class="email-loading" *ngIf="isEmailFetching" />
     </div>
     <div class="input-wrapper">
       <label

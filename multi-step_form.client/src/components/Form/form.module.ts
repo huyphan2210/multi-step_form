@@ -9,19 +9,23 @@ import { ThankYouContentComponent } from './ThankYouContent/thank-you-content.co
 import { ConfirmContentComponent } from './ConfirmContent/confirm-content.component';
 import { FormComponent } from './form.component';
 import { AddOnContentModule } from './AddOnContent/add-on-content.module';
+import { LoadingModule } from './Loading/loading.module';
+import { PersonalInfoContentModule } from './PersonalInfoContent/personal-info-content.module';
 
 @NgModule({
   declarations: [
     FormComponent,
-    PersonalInfoContentComponent,
+
     ConfirmContentComponent,
     ThankYouContentComponent,
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    PersonalInfoContentModule,
     PlanContentModule,
     AddOnContentModule,
+    LoadingModule,
   ],
   exports: [FormComponent],
 })
