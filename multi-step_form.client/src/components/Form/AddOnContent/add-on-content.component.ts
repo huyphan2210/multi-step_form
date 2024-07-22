@@ -2,8 +2,12 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import AddOnAPI from 'src/api/add-on.api';
 import { AddOnsStateService } from 'src/state-service/add-ons.state-service';
-import { PersonalInfoFormControls } from 'src/state-service/form.state-service';
-import { AddOn } from 'src/swagger/api';
+import {
+  PersonalInfoFormControls,
+  personalInfoKeys,
+} from 'src/state-service/form.state-service';
+import { PlanStateService } from 'src/state-service/plan.state-service';
+import { AddOn, PriceType } from 'src/swagger/api';
 
 @Component({
   selector: 'add-on-content',
@@ -15,9 +19,17 @@ export class AddOnContentComponent implements OnInit {
 
   addOns: AddOn[] = [];
   isLoadingContent = false;
-  constructor(private addOnsStateService: AddOnsStateService) {
+  currentPriceType: PriceType = 0;
+
+  constructor(
+    private addOnsStateService: AddOnsStateService,
+    private planStateService: PlanStateService
+  ) {
     this.addOnsStateService.getAddOnsState().subscribe((addOns) => {
       this.addOns = addOns;
+    });
+    this.planStateService.getPriceTypeState().subscribe((priceType) => {
+      this.currentPriceType = priceType;
     });
   }
 
@@ -31,6 +43,8 @@ export class AddOnContentComponent implements OnInit {
   }
 
   isAddOnActive(id: string) {
-    return this.addOns.map((addOn) => addOn.id).includes(id);
+    const addOns = this.form.get(personalInfoKeys.addOnIds)?.value as string[];
+    const isAddOnActive = addOns.includes(id);
+    return isAddOnActive;
   }
 }
