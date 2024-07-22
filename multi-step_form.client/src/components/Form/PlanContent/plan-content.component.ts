@@ -41,11 +41,7 @@ export class PlanContentComponent implements OnInit {
   }
 
   changePlanType() {
-    if (this.currentPriceType === 0) {
-      this.currentPriceType = 1;
-    } else {
-      this.currentPriceType = 0;
-    }
+    this.planStateService.changePriceType();
     this.form.patchValue({ currentPriceType: this.currentPriceType });
   }
 }
