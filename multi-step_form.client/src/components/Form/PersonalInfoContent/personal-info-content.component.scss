@@ -18,6 +18,7 @@
         &.invalid {
           span:last-child {
             color: var(--red);
+            text-align: end;
           }
         }
       }
