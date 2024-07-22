@@ -1,2 +1,9 @@
 :host {
+  section {
+    .add-ons {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
 }
