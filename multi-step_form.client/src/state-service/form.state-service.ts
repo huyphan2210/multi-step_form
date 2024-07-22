@@ -42,10 +42,10 @@ export class FormStateService {
   form: FormGroup<PersonalInfoFormControls>;
 
   validateEmailIfExisted(personalInfoApi: PersonalInfoAPI) {
-    const emailControl = this.form.get('email');
+    const emailControl = this.form.get(personalInfoKeys.email);
     emailControl?.valueChanges.pipe(debounceTime(300)).subscribe(() => {
-      const nameControl = this.form.get('name');
-      const phoneControl = this.form.get('phone');
+      const nameControl = this.form.get(personalInfoKeys.name);
+      const phoneControl = this.form.get(personalInfoKeys.phone);
       const isUpdatingControl = this.form.get('isUpdatingExistedPersonalInfo');
       if (emailControl.valid && emailControl.value) {
         nameControl?.disable();

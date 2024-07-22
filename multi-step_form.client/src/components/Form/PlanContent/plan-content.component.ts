@@ -2,7 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { PlanStateService } from 'src/state-service/plan.state-service';
 import { Plan, PriceType } from 'src/swagger/api';
-import { PersonalInfoFormControls } from 'src/state-service/form.state-service';
+import {
+  PersonalInfoFormControls,
+  personalInfoKeys,
+} from 'src/state-service/form.state-service';
 
 @Component({
   selector: 'plan-content',
@@ -34,7 +37,9 @@ export class PlanContentComponent implements OnInit {
         .finally(() => (this.isLoadingContent = false));
     }
 
-    const currentPriceTypeValue = this.form.get('currentPriceType')?.value;
+    const currentPriceTypeValue = this.form.get(
+      personalInfoKeys.currentPriceType
+    )?.value;
     if (currentPriceTypeValue) {
       this.currentPriceType = currentPriceTypeValue as PriceType;
     }
