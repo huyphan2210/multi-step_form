@@ -1,5 +1,12 @@
 <label [formGroup]="form" class="add-on" [ngClass]="{ active: isActive }">
-  <input type="radio" [value]="addOn.id" (change)="handleAddOn($event)" />
+  <input type="radio" [value]="addOn.id" (click)="handleAddOn($event)" />
   <div class="add-on__checkbox"></div>
-  <div class="add-on__info"></div>
+  <div class="add-on__info">
+    <div class="add-on__info__text">
+      <h2>{{ addOn.name }}</h2>
+      <p>{{ addOn.description }}</p>
+    </div>
+    <span *ngIf="currentPriceType === 0">+${{ addOn.monthlyPrice }}/mo</span>
+    <span *ngIf="currentPriceType === 1">+${{ addOn.yearlyPrice }}/yr</span>
+  </div>
 </label>
