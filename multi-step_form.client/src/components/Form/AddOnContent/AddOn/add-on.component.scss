@@ -18,8 +18,9 @@
       border-color: var(--pastel-blue);
       background-color: var(--magnolia);
 
-      &__checkbox {
+      .add-on__checkbox {
         background-color: var(--purblish-blue);
+        border-color: var(--purblish-blue);
       }
     }
 
@@ -33,6 +34,13 @@
       height: 1.5rem;
       background-color: transparent;
       border-radius: 0.5rem;
+      border: solid 0.125rem var(--light-gray);
+      display: grid;
+      place-items: center;
+
+      svg {
+        width: 60%;
+      }
     }
 
     &__info {
