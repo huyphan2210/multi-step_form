@@ -111,4 +111,15 @@ export class FormStateService {
   getEmailFetchingState() {
     return this.emailFetchingState$.asObservable();
   }
+
+  submitForm() {
+    return this.personalInfoApi.registerNewPersonalInfo({
+      email: this.form.get(personalInfoKeys.email)?.value,
+      name: this.form.get(personalInfoKeys.name)?.value,
+      phone: this.form.get(personalInfoKeys.phone)?.value,
+      planId: this.form.get(personalInfoKeys.planId)?.value,
+      addOnIds: this.form.get(personalInfoKeys.addOnIds)?.value,
+      currentPriceType: this.form.get(personalInfoKeys.currentPriceType)?.value,
+    });
+  }
 }
