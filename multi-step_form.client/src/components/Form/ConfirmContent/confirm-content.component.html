@@ -1,1 +1,46 @@
-<section></section>
+<section [formGroup]="form">
+  <h1>Finishing Up</h1>
+  <p>Double-check everything looks OK before confirming.</p>
+  <div class="confirmation__details">
+    <div class="confirmation__details__plan">
+      <div>
+        <h2>
+          {{ currentPlan.name }}{{ " " }}
+          <span *ngIf="currentPriceType === 0">(Monthly)</span>
+          <span *ngIf="currentPriceType === 1">(Yearly)</span>
+        </h2>
+        <button type="button" (click)="returnToPlanPage()">Change</button>
+      </div>
+      <span *ngIf="currentPriceType === 0"
+        >+${{ currentPlan.monthlyPrice }}/mo</span
+      >
+      <span *ngIf="currentPriceType === 1"
+        >+${{ currentPlan.yearlyPrice }}/yr</span
+      >
+    </div>
+    <div
+      *ngIf="currentAddOns.length > 0"
+      class="confirmation__details__add-ons"
+    >
+      <div
+        class="confirmation__details__add-ons__instance"
+        *ngFor="let addOn of currentAddOns"
+      >
+        <span>{{ addOn.name }}</span>
+        <span *ngIf="currentPriceType === 0"
+          >+${{ addOn.monthlyPrice }}/mo</span
+        >
+        <span *ngIf="currentPriceType === 1">+${{ addOn.yearlyPrice }}/yr</span>
+      </div>
+    </div>
+  </div>
+  <div class="confirmation__total-price">
+    <div>
+      <span>Total (per {{ " " }}</span>
+      <span *ngIf="currentPriceType === 0">month</span>
+      <span *ngIf="currentPriceType === 1">year</span>)
+    </div>
+    <span *ngIf="currentPriceType === 0">+${{ currentTotalPrice }}/mo</span>
+    <span *ngIf="currentPriceType === 1">+${{ currentTotalPrice }}/yr</span>
+  </div>
+</section>
