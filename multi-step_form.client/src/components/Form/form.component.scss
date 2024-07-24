@@ -1,5 +1,6 @@
 :host {
   display: block;
+  height: 100%;
   padding-inline: 1rem;
   transform: translateY(-4rem);
 
@@ -7,6 +8,7 @@
     background-color: white;
     padding: 2rem 1rem;
     border-radius: var(--border-radius);
+    height: calc(100% - 4rem);
   }
 }
 

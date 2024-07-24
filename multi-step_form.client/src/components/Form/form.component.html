@@ -5,6 +5,6 @@
   />
   <plan-content *ngSwitchCase="step.SelectPlan" [form]="form" />
   <add-on-content *ngSwitchCase="step.SelectAddOn" [form]="form" />
-  <confirm-content *ngSwitchCase="step.Confirm" />
+  <confirm-content *ngSwitchCase="step.Confirm" [form]="form" />
   <thank-you-content *ngSwitchCase="step.ThankYou" />
 </form>
