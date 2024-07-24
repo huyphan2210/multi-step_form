@@ -58,7 +58,7 @@ export class FormStateService {
               name: personalInfo.name!,
               phone: personalInfo.phone!,
               planId: personalInfo.planId!,
-              addOnIds: [],
+              addOnIds: personalInfo.addOnIds,
               currentPriceType: personalInfo.currentPriceType,
               isUpdatingExistedPersonalInfo: true,
             });
