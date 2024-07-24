@@ -101,6 +101,7 @@
         placeholder="e.g. +1 234 567 890"
         type="tel"
         formControlName="phone"
+        (keydown)="validatePhoneInput($event)"
       />
     </div>
   </div>
