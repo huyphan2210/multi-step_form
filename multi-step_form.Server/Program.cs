@@ -30,6 +30,8 @@ builder.Services.AddScoped(provider =>
 
     var path = Environment.GetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS");
     var json = Environment.GetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS_JSON");
+    Console.WriteLine("path", path);
+    Console.WriteLine("json", json);
     GoogleCredential googleCredential;
     if (!string.IsNullOrEmpty(path))
     {
