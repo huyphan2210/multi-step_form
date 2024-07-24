@@ -67,4 +67,8 @@ export class StepStateService {
     }
     this.stepState$.next({ step: prevStep });
   }
+
+  setStepState(step: Step) {
+    this.stepState$.next({ step });
+  }
 }
