@@ -6,8 +6,8 @@ namespace multi_step_form.Server.DataAccess.PlanCollection
     public class PlanCollection : IPlanCollection
     {
         private readonly CollectionReference _planReference;
-        private readonly ILogger _logger;
-        public PlanCollection(ILogger logger)
+        private readonly ILogger<PlanCollection> _logger;
+        public PlanCollection(ILogger<PlanCollection> logger)
         {
             // SET GOOGLE_APPLICATION_CREDENTIALS in the EnvironmentVariable of your local machine/hosting service
             // var path = "Path to your firebase-adminsdk.json file"; // e.g., "firebase-adminsdk.json"

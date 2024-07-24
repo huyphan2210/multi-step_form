@@ -10,6 +10,8 @@ using multi_step_form.Server.Services.PlanService;
 using Swashbuckle.AspNetCore.Swagger;
 
 var builder = WebApplication.CreateBuilder(args);
+// Add logging services
+builder.Logging.AddConsole(); // or any other logging provider
 
 // Add controllers to the container.
 builder.Services.AddControllers();
