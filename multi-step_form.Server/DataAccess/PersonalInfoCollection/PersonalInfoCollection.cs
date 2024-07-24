@@ -48,7 +48,7 @@ namespace multi_step_form.Server.DataAccess.PersonalInfoCollection
             var docRef = snapshot.Documents.ToList().FirstOrDefault()?.Reference;
             if (docRef != null)
             { 
-                await docRef.SetAsync(personalInfoRequest);
+                await docRef.SetAsync(personalInfoRequest.ParseRequestToPersonalInfo());
             }
 
             return newPersonalInfo;
