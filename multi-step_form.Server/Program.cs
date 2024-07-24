@@ -29,28 +29,39 @@ builder.Services.AddScoped<IAddOnCollection, AddOnCollection>();
 //Add FireStoreDb to the Container
 builder.Services.AddScoped(provider =>
 {
-
-    var path = Environment.GetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS");
-    var json = Environment.GetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS_JSON");
-    Console.WriteLine("path", path);
-    Console.WriteLine("json", json);
-    GoogleCredential googleCredential;
-    if (!string.IsNullOrEmpty(path))
+    try
     {
-        googleCredential = GoogleCredential.FromFile(path);
+        var path = Environment.GetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS");
+        var json = Environment.GetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS_JSON");
+
+        if (string.IsNullOrEmpty(path) && string.IsNullOrEmpty(json))
+        {
+            throw new InvalidOperationException("Neither GOOGLE_APPLICATION_CREDENTIALS nor GOOGLE_APPLICATION_CREDENTIALS_JSON environment variables are set.");
+        }
+
+        GoogleCredential googleCredential;
+        if (!string.IsNullOrEmpty(path))
+        {
+            googleCredential = GoogleCredential.FromFile(path);
+        }
+        else
+        {
+            googleCredential = GoogleCredential.FromJson(json);
+        }
+
+        var fireStoreBuilder = new FirestoreDbBuilder
+        {
+            ProjectId = Environment.GetEnvironmentVariable("FIRESTORE_FORM_PROJECT-ID"),
+            Credential = googleCredential,
+        };
+
+        return fireStoreBuilder.Build();
     }
-    else
+    catch (Exception ex)
     {
-        googleCredential = GoogleCredential.FromJson(json);
+        // Log or handle the exception as necessary
+        throw new InvalidOperationException("Failed to initialize FirestoreDb", ex);
     }
-
-    var fireStoreBuilder = new FirestoreDbBuilder
-    {
-        ProjectId = Environment.GetEnvironmentVariable("FIRESTORE_FORM_PROJECT-ID"),
-        Credential = googleCredential,
-    };
-
-    return fireStoreBuilder.Build();
 });
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
