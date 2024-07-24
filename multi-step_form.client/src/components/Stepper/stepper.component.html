@@ -9,6 +9,9 @@
   [disabled]="checkIfNextButtonIsDisabled()"
   type="button"
   (click)="nextStep()"
+  [ngClass]="{
+    confirm: currentStep === step.Confirm
+  }"
 >
   {{ currentStep !== step.Confirm ? "Next step" : "Confirm" }}
 </button>
