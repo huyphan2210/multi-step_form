@@ -28,7 +28,7 @@ builder.Services.AddScoped<IAddOnCollection, AddOnCollection>();
 
 
 //Add FireStoreDb to the Container
-builder.Services.AddScoped(provider => FireStoreDbBuilder());
+builder.Services.AddSingleton(provider => FireStoreDbBuilder());
 
 FirestoreDb FireStoreDbBuilder()
 {
