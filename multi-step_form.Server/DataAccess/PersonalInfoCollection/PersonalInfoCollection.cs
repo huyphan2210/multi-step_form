@@ -14,12 +14,20 @@ namespace multi_step_form.Server.DataAccess.PersonalInfoCollection
             // var path = "Path to your firebase-adminsdk.json file"; // e.g., "firebase-adminsdk.json"
             // Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", path);
             var projectId = Environment.GetEnvironmentVariable("FIRESTORE_FORM_PROJECT-ID");
+            var path = Environment.GetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS");
+            var json = Environment.GetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS_JSON");
+            Console.WriteLine(path);
+            Console.WriteLine(json);
             var fireStoreDb = FirestoreDb.Create(projectId);
             _personalInfoReference = fireStoreDb.Collection(nameof(PersonalInfo));
         }
 
         public async Task<PersonalInfo?> GetPersonalInfoByEmailAsync(string email)
         {
+            var path = Environment.GetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS");
+            var json = Environment.GetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS_JSON");
+            Console.WriteLine(path);
+            Console.WriteLine(json);
             var query = _personalInfoReference.WhereEqualTo(nameof(email), email);
             var snapshot = await query.GetSnapshotAsync();
             var personalInfo = snapshot.Documents.Select(doc => doc.ConvertTo<PersonalInfo>()).FirstOrDefault();

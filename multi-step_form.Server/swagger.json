@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "multi-step_form.Server, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "title": "multi-step_form.Server",
     "version": "1.0"
   },
   "paths": {
