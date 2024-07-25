@@ -36,8 +36,6 @@ FirestoreDb FireStoreDbBuilder()
     {
         var path = Environment.GetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS");
         var json = Environment.GetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS_JSON");
-        Console.WriteLine(path);
-        Console.WriteLine(json);
         if (string.IsNullOrEmpty(path) && string.IsNullOrEmpty(json))
         {
             throw new InvalidOperationException("Neither GOOGLE_APPLICATION_CREDENTIALS nor GOOGLE_APPLICATION_CREDENTIALS_JSON environment variables are set.");
