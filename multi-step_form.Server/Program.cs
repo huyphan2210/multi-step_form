@@ -26,44 +26,38 @@ builder.Services.AddScoped<IPersonalInfoCollection, PersonalInfoCollection>();
 builder.Services.AddScoped<IPlanCollection, PlanCollection>();
 builder.Services.AddScoped<IAddOnCollection, AddOnCollection>();
 
-
 //Add FireStoreDb to the Container
-builder.Services.AddSingleton(provider => FireStoreDbBuilder());
 
-FirestoreDb FireStoreDbBuilder()
+try
 {
-    try
+    var path = Environment.GetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS");
+    var json = Environment.GetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS_JSON");
+    if (string.IsNullOrEmpty(path) && string.IsNullOrEmpty(json))
     {
-        var path = Environment.GetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS");
-        var json = Environment.GetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS_JSON");
-        if (string.IsNullOrEmpty(path) && string.IsNullOrEmpty(json))
-        {
-            throw new InvalidOperationException("Neither GOOGLE_APPLICATION_CREDENTIALS nor GOOGLE_APPLICATION_CREDENTIALS_JSON environment variables are set.");
-        }
-
-        GoogleCredential googleCredential;
-        if (!string.IsNullOrEmpty(path))
-        {
-            googleCredential = GoogleCredential.FromFile(path);
-        }
-        else
-        {
-            googleCredential = GoogleCredential.FromJson(json);
-        }
-
-        var fireStoreBuilder = new FirestoreDbBuilder
-        {
-            ProjectId = Environment.GetEnvironmentVariable("FIRESTORE_FORM_PROJECT-ID"),
-            Credential = googleCredential,
-        };
-
-        return fireStoreBuilder.Build();
+        throw new InvalidOperationException("Neither GOOGLE_APPLICATION_CREDENTIALS nor GOOGLE_APPLICATION_CREDENTIALS_JSON environment variables are set.");
     }
-    catch (Exception ex)
+
+    GoogleCredential googleCredential;
+    if (!string.IsNullOrEmpty(path))
     {
-        // Log or handle the exception as necessary
-        throw new InvalidOperationException("Failed to initialize FirestoreDb", ex);
+        googleCredential = GoogleCredential.FromFile(path);
     }
+    else
+    {
+        googleCredential = GoogleCredential.FromJson(json);
+    }
+
+    var fireStoreBuilder = new FirestoreDbBuilder
+    {
+        ProjectId = Environment.GetEnvironmentVariable("FIRESTORE_FORM_PROJECT-ID"),
+        Credential = googleCredential,
+    };
+
+    builder.Services.AddSingleton(provider => fireStoreBuilder);
+}
+catch (Exception e)
+{
+    throw new Exception(e.Message);
 }
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
