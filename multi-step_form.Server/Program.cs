@@ -30,22 +30,8 @@ builder.Services.AddScoped<IAddOnCollection, AddOnCollection>();
 
 try
 {
-    var path = Environment.GetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS");
-    var json = Environment.GetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS_JSON");
-    if (string.IsNullOrEmpty(path) && string.IsNullOrEmpty(json))
-    {
-        throw new InvalidOperationException("Neither GOOGLE_APPLICATION_CREDENTIALS nor GOOGLE_APPLICATION_CREDENTIALS_JSON environment variables are set.");
-    }
-
-    GoogleCredential googleCredential;
-    if (!string.IsNullOrEmpty(path))
-    {
-        googleCredential = GoogleCredential.FromFile(path);
-    }
-    else
-    {
-        googleCredential = GoogleCredential.FromJson(json);
-    }
+    var json = Environment.GetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS");
+    var googleCredential = GoogleCredential.FromJson(json);
 
     var fireStoreBuilder = new FirestoreDbBuilder
     {
