@@ -28,7 +28,7 @@ builder.Services.AddScoped<IAddOnCollection, AddOnCollection>();
 
 //Add FireStoreDb to the Container
 var json = Environment.GetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS");
-var googleCredential = GoogleCredential.FromJson(json);
+var googleCredential = GoogleCredential.FromFile(json);
 
 var fireStoreBuilder = new FirestoreDbBuilder
 {
