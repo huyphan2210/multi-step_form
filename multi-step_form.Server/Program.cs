@@ -27,10 +27,9 @@ builder.Services.AddScoped<IPlanCollection, PlanCollection>();
 builder.Services.AddScoped<IAddOnCollection, AddOnCollection>();
 
 //Add FireStoreDb to the Container
-
+var json = Environment.GetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS");
 try
 {
-    var json = Environment.GetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS");
     var googleCredential = GoogleCredential.FromJson(json);
 
     var fireStoreBuilder = new FirestoreDbBuilder
@@ -41,9 +40,17 @@ try
 
     builder.Services.AddSingleton(provider => fireStoreBuilder);
 }
-catch (Exception e)
+catch (Exception)
 {
-    throw new Exception(e.Message);
+    var googleCredential = GoogleCredential.FromFile(json);
+
+    var fireStoreBuilder = new FirestoreDbBuilder
+    {
+        ProjectId = Environment.GetEnvironmentVariable("FIRESTORE_FORM_PROJECT-ID"),
+        Credential = googleCredential,
+    };
+
+    builder.Services.AddSingleton(provider => fireStoreBuilder);
 }
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
