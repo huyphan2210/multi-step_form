@@ -28,6 +28,11 @@ builder.Services.AddScoped<IAddOnCollection, AddOnCollection>();
 
 //Add FireStoreDb to the Container
 var json = Environment.GetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS_JSON");
+if (json.Contains("/app/heroku_output/"))
+{
+    json = json.Replace("/app/heroku_output/", "");
+}
+
 var googleCredential = GoogleCredential.FromFile(json);
 
 var fireStoreBuilder = new FirestoreDbBuilder
