@@ -33,7 +33,7 @@ builder.Services.AddScoped<IAddOnCollection, AddOnCollection>();
 //    json = json.Replace("/app/heroku_output/", "");
 //}
 
-var googleCredential = GoogleCredential.FromFile("https://multistepform.blob.core.windows.net/google-credential/multi-step-form-28baf-firebase-adminsdk-yka2b-a993176d72.json?sp=rw&st=2024-07-29T06:35:35Z&se=2024-10-01T14:35:35Z&sv=2022-11-02&sr=b&sig=acsFyOoTPX0K3sUA7pyuID9xlGj092WPg%2BYlf9NzcXk%3D");
+var googleCredential = GoogleCredential.FromJson("https://multistepform.blob.core.windows.net/google-credential/multi-step-form-28baf-firebase-adminsdk-yka2b-a993176d72.json?sp=rw&st=2024-07-29T06:35:35Z&se=2024-10-01T14:35:35Z&sv=2022-11-02&sr=b&sig=acsFyOoTPX0K3sUA7pyuID9xlGj092WPg%2BYlf9NzcXk%3D");
 
 var fireStoreBuilder = new FirestoreDbBuilder
 {
