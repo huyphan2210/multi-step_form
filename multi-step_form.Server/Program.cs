@@ -27,11 +27,13 @@ builder.Services.AddScoped<IPlanCollection, PlanCollection>();
 builder.Services.AddScoped<IAddOnCollection, AddOnCollection>();
 
 //Add FireStoreDb to the Container
-//var json = Environment.GetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS_JSON");
-//if (json.Contains("/app/heroku_output/"))
-//{
-//    json = json.Replace("/app/heroku_output/", "");
-//}
+var json = Environment.GetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS_JSON");
+Console.WriteLine(json);
+Console.WriteLine(Environment.GetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS"));
+if (json.Contains("/app/heroku_output/"))
+{
+    json = json.Replace("/app/heroku_output/", "");
+}
 
 var googleCredential = GoogleCredential.FromJson("https://multistepform.blob.core.windows.net/google-credential/multi-step-form-28baf-firebase-adminsdk-yka2b-a993176d72.json?sp=rw&st=2024-07-29T06:35:35Z&se=2024-10-01T14:35:35Z&sv=2022-11-02&sr=b&sig=acsFyOoTPX0K3sUA7pyuID9xlGj092WPg%2BYlf9NzcXk%3D");
 
