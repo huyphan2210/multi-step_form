@@ -27,12 +27,16 @@ builder.Services.AddScoped<IPlanCollection, PlanCollection>();
 builder.Services.AddScoped<IAddOnCollection, AddOnCollection>();
 
 //Add FireStoreDb to the Container
-var jsonUrl = Environment.GetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS");
+var credentialUrl = Environment.GetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS_JSON");
+var path = "credential.json";
+using (var client = new HttpClient())
+{
+    var json = await client.GetStringAsync(credentialUrl);
+    await File.WriteAllTextAsync(path, json);
+    Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", path);
+}
 
-var response = await new HttpClient().GetAsync(jsonUrl);
-var json = await response.Content.ReadAsStringAsync();
-
-var googleCredential = GoogleCredential.FromJson(json);
+var googleCredential = GoogleCredential.FromFile(path);
 
 var fireStoreBuilder = new FirestoreDbBuilder
 {
