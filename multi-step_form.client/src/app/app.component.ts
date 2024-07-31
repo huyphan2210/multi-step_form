@@ -33,8 +33,9 @@ export class AppComponent implements OnInit {
 
   handleFormSizeChange(formDom: DOMRectReadOnly) {
     if (
+      window.innerWidth < 1024 &&
       formDom.height >
-      window.innerHeight - (window.innerHeight * 25) / 100 - 111
+        window.innerHeight - (window.innerHeight * 25) / 100 - 111
     ) {
       this.isStepperSticky = true;
     } else {
