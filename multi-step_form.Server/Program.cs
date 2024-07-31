@@ -55,7 +55,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowSpecificOrigin", corsBuilder =>
     {
         // TODO: Add the client endpoint
-        corsBuilder.WithOrigins("https://multi-step-form-huyphan.netlify.app/")
+        corsBuilder.WithOrigins("https://multi-step-form-huyphan.netlify.app")
             .AllowAnyMethod()
             .AllowAnyHeader()
             .AllowCredentials();
@@ -66,7 +66,7 @@ var app = builder.Build();
 
 app.UseDefaultFiles();
 app.UseStaticFiles();
-app.UseCors();
+app.UseCors("AllowSpecificOrigin");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
